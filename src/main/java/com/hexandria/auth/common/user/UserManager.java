@@ -2,24 +2,17 @@ package com.hexandria.auth.common.user;
 
 import com.hexandria.auth.ErrorState;
 import com.hexandria.auth.common.AuthData;
+import com.hexandria.auth.common.ChangePasswordData;
 import com.hexandria.auth.common.ErrorResponse;
 import com.msiops.ground.either.Either;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import org.omg.CORBA.Environment;
-import org.omg.CORBA.SystemException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.hexandria.auth.common.ChangePasswordData;
-import com.hexandria.auth.utils.PersistenceManager;
 import org.springframework.util.StringUtils;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityTransaction;
-import javax.persistence.NoResultException;
-import javax.persistence.PersistenceContext;
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,6 +23,7 @@ public class UserManager implements IUserManager {
 
     private static final Logger logger = LoggerFactory.getLogger(UserManager.class);
 
+    @PersistenceContext(unitName = "hexandria")
     protected EntityManager entityManager;
 
     @Override
@@ -169,6 +163,5 @@ public class UserManager implements IUserManager {
     }
 
     public UserManager() {
-        entityManager = PersistenceManager.getEm();
     }
 }
