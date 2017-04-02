@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
 import javax.persistence.*;
+import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,17 +28,9 @@ public class UserManager implements IUserManager {
     protected EntityManager entityManager;
 
     @Override
+    @Transactional
     public void updateUser(UserEntity userEntity) {
-        final EntityTransaction tx = entityManager.getTransaction();
-        try {
-            tx.begin();
-            entityManager.merge(userEntity);
-            tx.commit();
-        }
-        catch (Throwable e){
-            tx.rollback();
-            throw e;
-        }
+        entityManager.merge(userEntity);
     }
 
     @NotNull
@@ -62,7 +55,6 @@ public class UserManager implements IUserManager {
         }
 
         if (errors.isEmpty()) {
-            //noinspection ConstantConditions
             user.setPassword(credentials.getNewPassword()); // errors wont be empty if password is invalid
             updateUser(user);
         }
@@ -99,16 +91,9 @@ public class UserManager implements IUserManager {
     }
 
     @Override
+    @Transactional
     public UserEntity createUser(UserEntity userEntity) {
-        final EntityTransaction tx = entityManager.getTransaction();
-        try {
-            tx.begin();
-            entityManager.persist(userEntity);
-            tx.commit();
-        } catch (Throwable e) {
-            tx.rollback();
-            throw e;
-        }
+        entityManager.persist(userEntity);
         return userEntity;
     }
 
@@ -159,7 +144,6 @@ public class UserManager implements IUserManager {
         if (!errors.isEmpty()) {
             return Either.right(errors);
         }
-        //noinspection ConstantConditions
         return Either.left(user); //wont be reached if null
     }
 }

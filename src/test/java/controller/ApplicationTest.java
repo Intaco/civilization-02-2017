@@ -29,7 +29,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT, classes = Application.class)
 @Profile("test")
-@ContextConfiguration(classes = {DataSourceCreator.class})
 public class ApplicationTest {
 
     private static SecureRandom rnd = new SecureRandom();

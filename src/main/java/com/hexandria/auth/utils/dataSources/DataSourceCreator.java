@@ -7,6 +7,7 @@ import org.springframework.boot.autoconfigure.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
+import org.springframework.context.annotation.Profile;
 import org.springframework.core.env.Environment;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.orm.jpa.JpaTransactionManager;
@@ -22,17 +23,13 @@ import java.util.Properties;
  * Created by root on 01.04.17.
  */
 @Configuration
-@EnableJpaRepositories(
-        basePackages = {"com.hexandria.auth.common.user"},
-        entityManagerFactoryRef = "userEntityManagerFactory",
-        transactionManagerRef = "transactionManager"
-)
 public class DataSourceCreator {
 
     @Autowired
     Environment environment;
 
     @Bean
+    @Profile("test")
     public DataSource dataSource(){
         return DataSourceBuilder.
                 create()
@@ -44,7 +41,7 @@ public class DataSourceCreator {
     }
 
     @Bean
-    @Primary
+    @Profile("test")
     public LocalContainerEntityManagerFactoryBean userEntityManagerFactory(){
 
         Properties properties = new Properties();
@@ -64,7 +61,7 @@ public class DataSourceCreator {
     }
 
     @Bean
-    @Primary
+    @Profile("test")
     public PlatformTransactionManager transactionManager(){
         JpaTransactionManager transactionManager = new JpaTransactionManager();
         transactionManager.setEntityManagerFactory(userEntityManagerFactory().getObject());
