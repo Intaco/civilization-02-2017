@@ -1,10 +1,12 @@
 package controller;// TODO Code inspection
 
 import com.hexandria.Application;
+import com.hexandria.auth.utils.dataSources.DataSourceCreator;
 import net.minidev.json.JSONObject;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
@@ -12,6 +14,7 @@ import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Profile;
 import org.springframework.http.*;
+import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 
 
@@ -26,6 +29,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT, classes = Application.class)
 @Profile("test")
+@ContextConfiguration(classes = {DataSourceCreator.class})
 public class ApplicationTest {
 
     private static SecureRandom rnd = new SecureRandom();
@@ -48,6 +52,7 @@ public class ApplicationTest {
          */
         JSONObject json = createRegisterJson(rnd);
         ResponseEntity response = proceedPostRequest(json, SIGNUP_URI);
+        System.out.println(response.toString());
         assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
         json.clear();
 

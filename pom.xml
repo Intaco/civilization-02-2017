@@ -24,14 +24,14 @@
             </plugin>
             <!-- flyway  -->
             <!--<plugin>-->
-                <!--<groupId>org.flywaydb</groupId>-->
-                <!--<artifactId>flyway-maven-plugin</artifactId>-->
-                <!--<version>4.1.2</version>-->
-                <!--<configuration>-->
-                    <!--<user>admin</user>-->
-                    <!--<password>123456789</password>-->
-                    <!--<url>jdbc:postgresql://localhost:5432/hexandria</url>-->
-                <!--</configuration>-->
+            <!--<groupId>org.flywaydb</groupId>-->
+            <!--<artifactId>flyway-maven-plugin</artifactId>-->
+            <!--<version>4.1.2</version>-->
+            <!--<configuration>-->
+            <!--<user>admin</user>-->
+            <!--<password>123456789</password>-->
+            <!--<url>jdbc:postgresql://localhost:5432/hexandria</url>-->
+            <!--</configuration>-->
             <!--</plugin>-->
         </plugins>
     </build>

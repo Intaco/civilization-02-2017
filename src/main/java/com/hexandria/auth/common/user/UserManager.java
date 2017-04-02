@@ -23,7 +23,7 @@ public class UserManager implements IUserManager {
 
     private static final Logger logger = LoggerFactory.getLogger(UserManager.class);
 
-    @PersistenceContext(unitName = "hexandria")
+    @PersistenceContext
     protected EntityManager entityManager;
 
     @Override
@@ -69,6 +69,7 @@ public class UserManager implements IUserManager {
 
         return errors;
     }
+
     @Override
     @Nullable
     public UserEntity getUserById(String id) {
@@ -160,8 +161,5 @@ public class UserManager implements IUserManager {
         }
         //noinspection ConstantConditions
         return Either.left(user); //wont be reached if null
-    }
-
-    public UserManager() {
     }
 }

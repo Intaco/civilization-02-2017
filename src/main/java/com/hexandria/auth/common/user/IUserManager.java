@@ -6,8 +6,10 @@ import com.hexandria.auth.common.ChangePasswordData;
 import com.hexandria.auth.common.ErrorResponse;
 import com.msiops.ground.either.Either;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
+@Transactional
 public interface IUserManager {
     void updateUser(UserEntity userEntity);
     UserEntity getUserById(String id);

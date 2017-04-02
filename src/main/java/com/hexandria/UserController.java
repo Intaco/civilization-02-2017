@@ -17,11 +17,13 @@ import com.hexandria.auth.common.user.UserManager;
 import com.hexandria.auth.utils.RequestValidator;
 
 import javax.servlet.http.HttpSession;
+import javax.transaction.Transactional;
 import java.util.List;
 
 @RestController
 @CrossOrigin // for localhost usage
 //@CrossOrigin(origins = "https://[...].herokuapp.com") //for remote usage
+@Transactional
 public class UserController {
     Logger logger = LoggerFactory.getLogger(UserController.class);
 
