@@ -1,7 +1,6 @@
 package com.hexandria.auth.common.user;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import javax.persistence.*;
 
 
@@ -9,15 +8,25 @@ import javax.persistence.*;
 @Table(name = "users", schema = "public", catalog = "hexandria")
 public class UserEntity {
     @JsonIgnore
-    private int id;
-    private String login;
-    @JsonIgnore
-    private String password;
-    private String email;
-
     @Id
     @Column(name = "id")
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private int id;
+
+    @Basic
+    @Column(name = "login")
+    private String login;
+
+    @JsonIgnore
+    @Basic
+    @Column(name = "password")
+    private String password;
+
+    @Basic
+    @Column(name = "email")
+    private String email;
+
+
     public int getId() {
         return id;
     }
@@ -26,8 +35,6 @@ public class UserEntity {
         this.id = id;
     }
 
-    @Basic
-    @Column(name = "login")
     public String getLogin() {
         return login;
     }
@@ -36,8 +43,6 @@ public class UserEntity {
         this.login = login;
     }
 
-    @Basic
-    @Column(name = "password")
     public String getPassword() {
         return password;
     }
@@ -46,8 +51,6 @@ public class UserEntity {
         this.password = password;
     }
 
-    @Basic
-    @Column(name = "email")
     public String getEmail() {
         return email;
     }
