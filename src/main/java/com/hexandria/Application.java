@@ -1,5 +1,6 @@
 package com.hexandria;
 
+import com.hexandria.auth.utils.dataSources.DataSourceCreator;
 import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
@@ -9,9 +10,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
 
-@Configuration
-@ComponentScan
-@EnableAutoConfiguration(exclude = { DataSourceAutoConfiguration.class })
+@SpringBootApplication
 public class Application {
 
     public static void main(String[] args) throws Exception {

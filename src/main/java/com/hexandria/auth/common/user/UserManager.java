@@ -9,7 +9,10 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.util.StringUtils;
 
 import javax.persistence.*;
@@ -28,7 +31,6 @@ public class UserManager implements IUserManager {
     protected EntityManager entityManager;
 
     @Override
-    @Transactional
     public void updateUser(UserEntity userEntity) {
         entityManager.merge(userEntity);
     }
@@ -91,7 +93,6 @@ public class UserManager implements IUserManager {
     }
 
     @Override
-    @Transactional
     public UserEntity createUser(UserEntity userEntity) {
         entityManager.persist(userEntity);
         return userEntity;

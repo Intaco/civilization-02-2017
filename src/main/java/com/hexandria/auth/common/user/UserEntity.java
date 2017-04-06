@@ -1,6 +1,13 @@
 package com.hexandria.auth.common.user;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.hibernate.annotations.Generated;
+import org.hibernate.annotations.GenerationTime;
+import org.hibernate.annotations.NotFound;
+import org.hibernate.annotations.NotFoundAction;
+import org.jetbrains.annotations.Nullable;
+import org.springframework.context.annotation.Primary;
+
 import javax.persistence.*;
 
 
@@ -9,9 +16,9 @@ import javax.persistence.*;
 public class UserEntity {
     @JsonIgnore
     @Id
-    @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    @Column(name = "id", unique = true, columnDefinition = "SERIAL")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
 
     @Basic
     @Column(name = "login")
