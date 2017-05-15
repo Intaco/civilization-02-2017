@@ -9,8 +9,7 @@ services:
   - postgresql
 
 before_install:
-  - psql --command "CREATE USER admin WITH SUPERUSER PASSWORD '123456789';"
-  - psql -c 'create database hexandriaTest with owner admin'
+  - psql -c 'create database hexandriaTest with owner postgres'
 
 install:
   - mvn clean install
