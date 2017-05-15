@@ -10,7 +10,7 @@ services:
 
 before_script:
   - psql --command 'CREATE USER admin WITH SUPERUSER PASSWORD '123456789';'
-  - psql -c 'create database hexandriaTest' -U postgres
+  - psql -c 'create database hexandriaTest with owner admin'
 
 install:
   - mvn clean install
