@@ -25,7 +25,7 @@
                 <configuration>
                     <user>admin</user>
                     <password>123456789</password>
-                    <url>jdbc:postgresql://localhost:5432/hexandria</url>
+                    <url>jdbc:postgresql://localhost:5432/hexandriaTest</url>
                 </configuration>
             </plugin>
         </plugins>
