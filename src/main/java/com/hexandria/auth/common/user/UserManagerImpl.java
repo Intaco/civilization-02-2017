@@ -12,6 +12,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
+import sun.font.CompositeGlyphMapper;
 
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
@@ -67,7 +68,7 @@ public class UserManagerImpl implements UserManager {
 
     @Override
     @Nullable
-    public UserEntity getUserById(@NotNull Long id) {
+    public UserEntity getUserById(@NotNull Integer id) {
         return entityManager.find(UserEntity.class, id);
     }
 

@@ -49,7 +49,6 @@ public class MyWebSocketHandler extends TextWebSocketHandler {
     @Override
     public void afterConnectionEstablished(WebSocketSession session) throws Exception {
         service.registerUser(new Long(session.getAttributes().get("userId").toString()), session);
-        LOGGER.info("Connected user with id  " + session.getAttributes().get("userId"));
     }
 
     @Override

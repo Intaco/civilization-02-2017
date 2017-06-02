@@ -14,7 +14,7 @@ public interface UserManager {
     void updateUser(@NotNull UserEntity userEntity);
 
     @Nullable
-    UserEntity getUserById(@NotNull Long id);
+    UserEntity getUserById(@NotNull Integer id);
 
     /**
      * @param userEntity - data input

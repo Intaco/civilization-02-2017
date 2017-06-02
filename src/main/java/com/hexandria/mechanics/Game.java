@@ -33,7 +33,6 @@ public class Game {
         currentPlayerId = (currentPlayerId + 1) % players.size() ;
         latestTurnStart = System.currentTimeMillis();
         final List<Message> newTurnMessages = new ArrayList<>();
-        newTurnMessages.add(new Turn(new Turn.Payload()));
         for(int i = 0; i < sizeX; ++i){
             for(int j = 0; j < sizeY; ++j){
                 Cell cell = map[i][j];
@@ -52,6 +51,7 @@ public class Game {
                 }
             }
         }
+        newTurnMessages.add(new Turn(new Turn.Payload()));
         return newTurnMessages;
     }
 

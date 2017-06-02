@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
  */
 @RestController
 @CrossOrigin
-@RequestMapping(value = "scoreboard")
+@RequestMapping(value = "api/scoreboard")
 @Transactional
 public class ScoreboardController {
     final Logger LOGGER = LoggerFactory.getLogger(ScoreboardController.class);
